@@ -1,0 +1,91 @@
+version: '3.9'
+
+# Network
+networks:
+  web_network:
+    name: reactwebapi_network
+    driver: bridge
+
+# Services
+services:
+  # React App dev
+  reactapp_dev:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.dev
+    container_name: reactwebapi_dev
+    restart: always
+    volumes:
+      - ./app:/usr/app
+      - /usr/app/node_modules # Bookmarked volume
+    ports:
+      - 5173:5173
+    environment: 
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      - web_network
+  # React App production
+  reactapp_prod:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.prod
+    container_name: reactwebapi_prod
+    expose:
+      - 4173
+    ports:
+      - 4173:4173
+    restart: always
+    networks:
+      - web_network
+  # Nginx Web Server
+  nginx:
+    depends_on:
+      - reactapp_prod
+    image: nginx:latest
+    container_name: nginx_reactwebapi
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - web_network
+  # .NET Core Web API dev
+  dotnet_dev:
+    build:
+      context: ./backendapi
+      dockerfile: Dockerfile.dev
+    container_name: dotnetwebapi_dev
+    restart: always
+    volumes:
+      - ./backendapi:/src
+    ports:
+      - 7072:7072
+    networks:
+      - web_network
+  # .NET Core Web API production
+  dotnet_prod:
+    build:
+      context: ./backendapi
+      dockerfile: Dockerfile.prod
+    container_name: dotnetwebapi_prod
+    restart: always
+    volumes:
+      - ./backendapi:/src/backendapi
+    ports:
+      - 5077:5077
+    networks:
+      - web_network
+  # SQL Server 2022
+  sqlserver:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    container_name: sqlserver
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Samit@1234
+    ports:
+      - 1433:1433
+    # volumes:
+    #   - ./sqlserver_data:/var/opt/mssql
+    networks:
+      - web_network

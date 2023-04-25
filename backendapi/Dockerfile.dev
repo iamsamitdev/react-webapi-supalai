@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+EXPOSE 7072
+
+ENV ASPNETCORE_URLS=http://+:7072
+# ENV ASPNETCORE_URLS=https://+:7072
+
+ENV ASPNETCORE_ENVIRONMENT Development
+
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+
+COPY ["backendapi.csproj", "./"]
+RUN dotnet restore "backendapi.csproj"
+COPY . .
+
+# RUN dotnet tool install --global dotnet-dev-certs
+# RUN dotnet dev-certs https --clean
+# RUN dotnet dev-certs https --trust
+
+CMD ["dotnet", "watch", "run", "--urls", "http://0.0.0.0:7072"]
+# CMD ["dotnet", "watch", "run", "--urls", "https://0.0.0.0:7072"]

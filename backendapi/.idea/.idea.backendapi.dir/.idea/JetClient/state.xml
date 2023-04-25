@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JetClientState">
+    <option name="draftsState">
+      <draftsState>
+        <option name="requests">
+          <list>
+            <requestState>
+              <option name="id" value="44c81690-fcca-43bb-92a2-181a08beddd7" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;EmailID&quot;: &quot;ssss&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="4ed2bd4e-bae6-49f7-8ba6-55bb3f0b56a8" />
+              <option name="method" value="POST" />
+              <option name="name" value="Draft 1" />
+              <option name="url" value="http://localhost:5077/Authentication/Register" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;EmailID&quot;: &quot;xxx&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="700adcbb-634c-4501-acee-b1621df9b316" />
+              <option name="method" value="POST" />
+              <option name="name" value="Draft 2" />
+              <option name="url" value="http://localhost:5077/Authentication/Register" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="c70a529f-d5f3-41c0-a565-d4c4503c95f1" />
+              <option name="method" value="POST" />
+              <option name="name" value="Draft 3" />
+              <option name="url" value="http://localhost:5077/Authentication/Login " />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;EmailID&quot;: &quot;samitkoyom@email.com&quot;,&#10;  &quot;Password&quot;: &quot;1234567844&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="27de2981-183d-4bee-8cf2-7215cecf2a71" />
+              <option name="method" value="POST" />
+              <option name="name" value="Draft 4" />
+              <option name="url" value="http://localhost:5077/Authentication/Login" />
+            </requestState>
+          </list>
+        </option>
+      </draftsState>
+    </option>
+    <option name="id" value="93d2800d-a95f-4cd7-9c5b-a4a790100965" />
+  </component>
+</project>
