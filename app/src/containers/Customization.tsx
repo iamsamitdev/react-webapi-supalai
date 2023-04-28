@@ -4,6 +4,7 @@ import TabPanel from "../components/TabPanel"
 import ColorText from "../components/ColorText"
 import SlowMotionVideoRoundedIcon from '@mui/icons-material/SlowMotionVideoRounded'
 import MovieFilterRoundedIcon from '@mui/icons-material/MovieFilterRounded'
+import BackendLayout from "../components/layouts/BackendLayout"
 
 function Customization() {
     const [value, setValue] = useState(0);
@@ -12,7 +13,9 @@ function Customization() {
         setValue(newValue);
     }
     
-    return <Box>
+    return (
+        <BackendLayout>
+    <Box>
         <Typography sx={styles.pageTitle} variant="h5">Customization</Typography>
         <Box sx={styles.tabHeader}>
             <Tabs value={value} onChange={handleChange}>
@@ -56,7 +59,9 @@ function Customization() {
         <TabPanel value={value} index={3}>
             <Typography>Nothing yet!</Typography>
         </TabPanel>
-    </Box>;
+    </Box>
+    </BackendLayout>
+    )
 }
 
 export default Customization;

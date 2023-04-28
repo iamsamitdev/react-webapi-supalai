@@ -5,6 +5,7 @@ import TabPanel from "../../components/TabPanel";
 import OverviewCharts from "./OverviewCharts";
 import RealTimeCard from "./RealtimeCard";
 import TopVideosList from "./TopVideosList";
+import BackendLayout from "../../components/layouts/BackendLayout";
 
 function Analytics() {
     const [value, setValue] = useState(0);
@@ -12,7 +13,9 @@ function Analytics() {
     const handleChange = (_event: any, newValue: any) => {
         setValue(newValue);
     };
-    return <Box>
+    return ( 
+    <BackendLayout>
+    <Box>
         <Typography sx={styles.pageTitle} variant="h5">Analytics</Typography>
         <Box sx={styles.tabHeader}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -45,7 +48,9 @@ function Analytics() {
         <TabPanel value={value} index={3}>
             <Typography>Revenue</Typography>
         </TabPanel>
-    </Box>;
+    </Box>
+    </BackendLayout>
+    )
 }
 
 export default Analytics;

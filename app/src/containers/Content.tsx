@@ -1,6 +1,7 @@
 import { Box, Tab, Tabs, Typography } from "@mui/material"
 import { useState } from "react"
 import TabPanel from "../components/TabPanel"
+import BackendLayout from "../components/layouts/BackendLayout";
 
 function Content() {
     const [value, setValue] = useState(0)
@@ -8,29 +9,33 @@ function Content() {
     const handleChange = (_event: any, newValue: any) => {
         setValue(newValue);
     };
-    return <Box>
-        <Typography sx={styles.pageTitle} variant="h5">Content</Typography>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="Videos" id='tab-0' />
-                <Tab label="Live" id='tab-1' />
-                <Tab label="Posts" id='tab-2' />
-                <Tab label="Playlists" id='tab-3' />
-            </Tabs>
-        </Box>
-        <TabPanel value={value} index={0}>
-            <p>vido content</p>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-            <p>live content</p>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-            <p>post content</p>
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-            <p>playlist content</p>
-        </TabPanel>
-    </Box>
+    return (
+        <BackendLayout>
+            <Box>
+                <Typography sx={styles.pageTitle} variant="h5">Content</Typography>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                        <Tab label="Videos" id='tab-0' />
+                        <Tab label="Live" id='tab-1' />
+                        <Tab label="Posts" id='tab-2' />
+                        <Tab label="Playlists" id='tab-3' />
+                    </Tabs>
+                </Box>
+                <TabPanel value={value} index={0}>
+                    <p>vido content</p>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <p>live content</p>
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                    <p>post content</p>
+                </TabPanel>
+                <TabPanel value={value} index={3}>
+                    <p>playlist content</p>
+                </TabPanel>
+            </Box>
+        </BackendLayout>
+    )
 }
 
 export default Content;

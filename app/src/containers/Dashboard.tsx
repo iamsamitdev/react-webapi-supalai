@@ -1,13 +1,77 @@
-import { Box, Typography } from "@mui/material"
-import LatestVideoCard from "../components/LatestVideoCard"
+import { Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material"
+import BackendLayout from "../components/layouts/BackendLayout";
+import api from "../../services/productAPI"
+import { useState, useEffect } from "react";
 
 function Dashboard() {
-    return <Box>
-        <Typography sx={styles.pageTitle} variant="h5">Dashboard</Typography>
-        <Box sx={styles.columnsContainer}>
-            <LatestVideoCard sx={styles.item} />
-        </Box>
-    </Box>;
+
+    // Create state for products
+    const [products, setProducts] = useState([])
+
+    // Read all products
+    const readAllProducts = () => {
+        api.getAllProducts().then((res) => {
+            setProducts(res.data)
+        })
+    }
+
+    // Initial load with useEffect
+    useEffect(() => {
+        readAllProducts()
+    }, [])
+
+    // console.log(products)
+
+    return (
+        <BackendLayout>
+            <Box>
+                <Typography sx={styles.pageTitle} variant="h5">Products</Typography>
+                <Box sx={styles.columnsContainer}>
+                   <TableContainer>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>ID</TableCell>
+                                    <TableCell>Category</TableCell>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell>Price</TableCell>
+                                    <TableCell>Image</TableCell>
+                                    <TableCell>Qty</TableCell>
+                                    <TableCell>Create</TableCell>
+                                    <TableCell>Action</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                { 
+                                    products.map((product: any, index: any) => (
+                                        <TableRow key={index}>
+                                            <TableCell>{product.productID}</TableCell>
+                                            <TableCell>{product.categoryID}</TableCell>
+                                            <TableCell>{product.productName}</TableCell>
+                                            <TableCell>{product.unitPrice}</TableCell>
+                                            <TableCell>
+                                                <img
+                                                    className=""
+                                                    src={product.productPicture}
+                                                    width={50}
+                                                />
+                                            </TableCell>
+                                            <TableCell>{product.unitInStock}</TableCell>
+                                            <TableCell>{product.createdDate}</TableCell>
+                                            <TableCell>
+                                                <Button variant="contained" color="warning">Edit</Button>&nbsp;&nbsp;
+                                                <Button variant="contained" color="error">Delete</Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    )) 
+                                }
+                            </TableBody>
+                        </Table>
+                   </TableContainer>
+                </Box>
+            </Box>
+        </BackendLayout>
+    )
 }
 
 export default Dashboard;

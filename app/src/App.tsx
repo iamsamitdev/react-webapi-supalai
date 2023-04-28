@@ -1,60 +1,39 @@
-import React from 'react'
-import './App.css'
-import '@fontsource/roboto/300.css'
-import '@fontsource/roboto/400.css'
-import '@fontsource/roboto/500.css'
-import '@fontsource/roboto/700.css'
-import CssBaseline from '@mui/material/CssBaseline'
-import { ProSidebarProvider } from 'react-pro-sidebar'
-import { Box, ThemeProvider } from '@mui/material'
-import SideNav from './components/SideNav'
-import AppHeader from './components/AppHeader'
-import theme from './config/theme';
-import { BrowserRouter } from 'react-router-dom'
-import AppRoutes from './router/AppRoutes'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Analytics from './containers/Analytics/Analytics';
+import Content from './containers/Content';
+import Customization from './containers/Customization';
+import Dashboard from './containers/Dashboard';
+import Login from './containers/Login';
+import ProtectedRoute from './router/ProtectedRoute';
 
 function App() {
   return (
-    <React.Fragment>
-      <ThemeProvider theme={theme}>
-        <ProSidebarProvider>
-          <CssBaseline />
-
-          <AppHeader />
-          <Box sx={styles.container}>
-            <BrowserRouter>
-              <SideNav />
-              <Box
-                component={'main'}
-                sx={styles.mainSection}
-              >
-                <AppRoutes />
-              </Box>
-
-            </BrowserRouter>
-
-          </Box>
-        </ProSidebarProvider>
-      </ThemeProvider>
-
-    </React.Fragment>
+    <BrowserRouter>
+      <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/dashboard' element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
+          <Route path='/content' element={
+            <ProtectedRoute>
+              <Content />
+            </ProtectedRoute>
+          } />
+          <Route path='/analytics' element={
+            <ProtectedRoute>
+              <Analytics />
+            </ProtectedRoute>} />
+          <Route path='/customization' element={
+            <ProtectedRoute>
+              <Customization />
+            </ProtectedRoute>
+          } />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
-/**
- * @type {import('@mui/material').SxProps}
- */
-const styles = {
-  container: {
-    display: 'flex',
-    bgcolor: 'neutral.light',
-    height: 'calc(100% - 64px)'
-  },
-  mainSection: {
-    p: 4,
-    width: '100%',
-    height: '100%',
-    overflow: 'auto',
-  }
-}
 export default App

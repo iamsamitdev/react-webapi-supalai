@@ -8,6 +8,11 @@ function AppHeader() {
 
     const { collapseSidebar, toggleSidebar, broken } = useProSidebar();
 
+    const signOut = () => {
+        localStorage.removeItem('token')
+        window.location.href = '/'
+    }
+
     return <AppBar position="sticky" sx={styles.appBar}>
         <Toolbar >
             <IconButton onClick={() => broken ? toggleSidebar() : collapseSidebar()} color="secondary">
@@ -21,7 +26,7 @@ function AppHeader() {
             <IconButton title="Settings" color="secondary">
                 <SettingsIcon />
             </IconButton>
-            <IconButton title="Sign Out" color="secondary">
+            <IconButton title="Sign Out" color="secondary" onClick={() => signOut()}>
                 <LogoutIcon />
             </IconButton>
         </Toolbar>
